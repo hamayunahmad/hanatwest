@@ -7,7 +7,7 @@ spec:
   project: default
 
   source:
-    repoURL: http://github.com/hamayunahmad/hanatwest.git
+    repoURL: https://github.com/hamayunahmad/hanatwest.git
     targetRevision: HEAD
     path: dev
   destination:

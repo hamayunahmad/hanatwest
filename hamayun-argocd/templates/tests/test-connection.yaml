@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "hamayun-argocd.fullname" . }}-test-connection"
+  labels:
+    {{- include "hamayun-argocd.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "hamayun-argocd.fullname" . }}:{{ .Values.service.port }}']
+  restartPolicy: Never
