@@ -12,8 +12,9 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: hamayun-argocd
-  syncPolicy:
+   syncPolicy:
     automated:
-      selfHeal: true
       prune: true
+      selfHeal: true
+      allowEmpty: true
 
