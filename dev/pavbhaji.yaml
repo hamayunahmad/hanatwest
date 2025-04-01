@@ -3,10 +3,10 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: dosa2
+    app: pavbhaji
   name: pavbhaji
 spec:
-  replicas: 1
+  replicas: 10
   selector:
     matchLabels:
       app: pavbhaji
