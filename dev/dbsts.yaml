@@ -1,34 +1,35 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: hamayun-mysql
+  labels:
+    app: hamayundb1
+  name: hamayundb1
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: hamayun-mysql
-  template:
-    metadata:
-      labels:
-        app: hamayun-mysql
-    spec:
-      containers:
-      - image: hamayun-mysql
-        image: mysql
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hamayundb1
+  template:
+    metadata:
+      labels:
+        app: hamayundb1
+    spec:
+      containers:
+      - image: mysql
+        name: mysql
         ports:
         - containerPort: 3306
         volumeMounts:
         - name: hamayun-mysql-storage
           mountPath: /var/lib/mysql/hamayun
-        env:
-        - name: hamayun-mysql
+        env:
+        - name: MYSQL_DATABASE
           valueFrom:
             secretKeyRef:
               name: dbsecret
               key: dbname
-       - name: MYSQL_ROOT_PASSWORD
-         valueFrom:
-           secretKeyRef:
-             name: dbsecret
-             key: dbpasswd
-
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: dbsecret
+              key: dbpasswd
