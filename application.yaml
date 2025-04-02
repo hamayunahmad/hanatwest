@@ -1,20 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: web-basic
-  namespace: hamayun-argocd
+  name: hamayun-argocd
+  namespace: default
 spec:
   project: default
-  source:
-    repoURL: https://github.com/hamayunahmad/hanatwest.git
-    targetRevision: HEAD
-    path: dev
   destination:
     server: https://kubernetes.default.svc
     namespace: hamayun-argocd
-   syncPolicy:
-    syncOptions:
-    - CreateNamespace=true
+  syncPolicy:
     automated:
-      selfHeal: true
       prune: true
+      selfHeal: true
